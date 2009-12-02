@@ -1,4 +1,4 @@
-ARCH=msp430x2001
+ARCH=msp430x2002
 CC := msp430-gcc
 CFLAGS := -g -mmcu=${ARCH} -Wall
 
