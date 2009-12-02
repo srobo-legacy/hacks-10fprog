@@ -1,0 +1,3 @@
+The python script that converts the ihex files from
+gpasm requires the library available at:
+http://www.bialix.com/intelhex/
