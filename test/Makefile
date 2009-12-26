@@ -7,7 +7,7 @@ AVR_AR = avr-ar
 AVR_OBJCOPY = avr-objcopy
 AVR_ARCH = atmega88
 
-CFLAGS = -g -Wall -O2
+CFLAGS = -g -Wall -O2 -I ..
 LDFLAGS = -L .. -l10fprog
 
 test-msp430: test-msp430.c lib10fprog.msp.a
