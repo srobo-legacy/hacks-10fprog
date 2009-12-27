@@ -20,6 +20,6 @@ void init( void )
 	P1DIR = P2DIR = 0;
 	
 	/* Need chaning to correct values */
-	tenfprog_init(&P1OUT, &P1IN, &P1DIR, 0, 1);
+	tenfprog_init(&P1OUT, &P1IN, &P1DIR, 0, 1, 2);
 
 }

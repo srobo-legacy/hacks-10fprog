@@ -11,5 +11,5 @@ int main() {
 }
 
 void init() {
-	tenfprog_init(&PORTB, &PINB, &DDRB, 0, 1);
+	tenfprog_init(&PORTB, &PINB, &DDRB, 0, 1, 2);
 }

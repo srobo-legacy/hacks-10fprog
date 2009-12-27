@@ -8,8 +8,11 @@
  * OUTP, INP, DIRP: Pointers to the output, input and direction registers of the
  *                  port used for the ICSPCLK and ICSPDAT lines.
  * CLKB, DATB:      Bit positions for the ICSP pins on the port.
+ * VPPB:            Bit position of the VPP control pin on the port.
  */
-void tenfprog_init(volatile uint8_t *OUTP, volatile uint8_t *INP,
-                   volatile uint8_t *DIRP, uint8_t CLKB, uint8_t DATB);
+void tenfprog_init(volatile uint8_t *OUTP,
+                   volatile uint8_t *INP,
+                   volatile uint8_t *DIRP,
+                   uint8_t CLKB, uint8_t DATB, uint8_t VPPB);
 
 #endif /* __10fprog_H */

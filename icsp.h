@@ -5,7 +5,7 @@
 extern volatile uint8_t *icsp_OUTP;
 extern volatile uint8_t *icsp_INP;
 extern volatile uint8_t *icsp_DIRP;
-extern uint8_t icsp_CLKB, icsp_DATB;
+extern uint8_t icsp_CLKB, icsp_DATB, icsp_VPPB;
 
 void icsp_init(void);
 
