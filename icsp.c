@@ -32,3 +32,11 @@ void icsp_init() {
 	/* ICSPCLK low */
 	*icsp_OUTP &= ~_BV(icsp_CLKB);
 }
+
+void icsp_set_vpp() {
+	VPP_HIGH();
+}
+
+void icsp_clear_vpp() {
+	VPP_LOW();
+}
