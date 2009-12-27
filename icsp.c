@@ -19,24 +19,25 @@ uint8_t icsp_CLKB, icsp_DATB, icsp_VPPB;
 #define VPP_HIGH()  (*icsp_OUTP |=  _BV(icsp_VPPB))
 #define VPP_LOW()   (*icsp_OUTP &= ~_BV(icsp_VPPB))
 
-#define DATA_VAL  (*icsp_INP & _BV(icsp_DATB))
+#define DATA_VAL()  (*icsp_INP & _BV(icsp_DATB))
 
 void icsp_init() {
-	/* ICSPCLK and VPP to output */
+	/* ICSP{CLK,DAT} to output */
 	*icsp_DIRP |= _BV(icsp_CLKB);
+	DATA_OUT();
+	/* ICSP{CLK,DAT} low */
+	CLK_LOW();
+	DATA_LOW();
+}
+
+void icsp_vpp_output() {
 	*icsp_DIRP |= _BV(icsp_VPPB);
-
-	/* ICSPDAT to input */
-	DATA_IN();
-
-	/* ICSPCLK low */
-	*icsp_OUTP &= ~_BV(icsp_CLKB);
 }
 
-void icsp_set_vpp() {
-	VPP_HIGH();
-}
-
-void icsp_clear_vpp() {
+void icsp_vpp_set() {
 	VPP_LOW();
+}
+
+void icsp_vpp_clear() {
+	VPP_HIGH();
 }

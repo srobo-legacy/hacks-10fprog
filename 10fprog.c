@@ -12,5 +12,17 @@ void tenfprog_init(volatile uint8_t *OUTP,
 	icsp_DATB = DATB;
 	icsp_VPPB = VPPB;
 
+	/* Ensure the uC doesn't begin in programming mode */
+	icsp_vpp_output();
+	icsp_vpp_clear();
+}
+
+void tenfprog_begin() {
+	/* Setup the ICSP interface */
 	icsp_init();
+	icsp_vpp_set();
+}
+
+void tenfprog_end() {
+	icsp_vpp_clear();
 }

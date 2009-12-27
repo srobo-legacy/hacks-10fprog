@@ -15,4 +15,10 @@ void tenfprog_init(volatile uint8_t *OUTP,
                    volatile uint8_t *DIRP,
                    uint8_t CLKB, uint8_t DATB, uint8_t VPPB);
 
+/* Begin programming of uC */
+void tenfprog_begin(void);
+
+/* End programming of uC */
+void tenfprog_end(void);
+
 #endif /* __10fprog_H */
