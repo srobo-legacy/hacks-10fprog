@@ -1,43 +1,40 @@
 #include "icsp.h"
 
-volatile uint8_t *icsp_OUTP;
-volatile uint8_t *icsp_INP;
-volatile uint8_t *icsp_DIRP;
-uint8_t icsp_CLKB, icsp_DATB, icsp_VPPB;
+volatile uint8_t *icsp_PORTS[3];
+uint8_t icsp_PINS[3];
 
 #ifndef _BV
 #define _BV(bit) (1 << (bit))
 #endif
 
-#define DATA_OUT()  (*icsp_DIRP |=  _BV(icsp_DATB))
-#define DATA_IN()  (*icsp_DIRP &= ~_BV(icsp_DATB))
+#define SET_BIT(p, b) ((p) |= _BV(b))
+#define CLEAR_BIT(p, b) ((p) &= _BV(b))
 
-#define CLK_HIGH()  (*icsp_OUTP |=  _BV(icsp_CLKB))
-#define CLK_LOW()   (*icsp_OUTP &= ~_BV(icsp_CLKB))
-#define DATA_HIGH() (*icsp_OUTP |=  _BV(icsp_DATB))
-#define DATA_LOW()  (*icsp_OUTP &= ~_BV(icsp_DATB))
-#define VPP_HIGH()  (*icsp_OUTP |=  _BV(icsp_VPPB))
-#define VPP_LOW()   (*icsp_OUTP &= ~_BV(icsp_VPPB))
+#define PIN_OUT(p)  SET_BIT(*icsp_PORTS[DIR], icsp_PINS[p])
+#define PIN_IN(p)   CLEAR_BIT(*icsp_PORTS[DIR], icsp_PINS[p])
 
-#define DATA_VAL()  (*icsp_INP & _BV(icsp_DATB))
+#define PIN_HIGH(p) SET_BIT(*icsp_PORTS[OUT], icsp_PINS[p])
+#define PIN_LOW(p)  CLEAR_BIT(*icsp_PORTS[OUT], icsp_PINS[p])
+
+#define PIN_VAL(p)  (*icsp_PORTS[IN] & _BV(icsp_PINS[p]))
 
 void icsp_init() {
 	/* ICSP{CLK,DAT} to output */
-	*icsp_DIRP |= _BV(icsp_CLKB);
-	DATA_OUT();
+	PIN_OUT(CLK);
+	PIN_OUT(DATA);
 	/* ICSP{CLK,DAT} low */
-	CLK_LOW();
-	DATA_LOW();
+	PIN_LOW(CLK);
+	PIN_LOW(DATA);
 }
 
 void icsp_vpp_output() {
-	*icsp_DIRP |= _BV(icsp_VPPB);
+	PIN_OUT(VPP);
 }
 
 void icsp_vpp_set() {
-	VPP_LOW();
+	PIN_LOW(VPP);
 }
 
 void icsp_vpp_clear() {
-	VPP_HIGH();
+	PIN_HIGH(VPP);
 }

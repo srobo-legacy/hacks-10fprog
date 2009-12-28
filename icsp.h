@@ -2,10 +2,15 @@
 #define __ICSP_H
 #include <stdint.h>
 
-extern volatile uint8_t *icsp_OUTP;
-extern volatile uint8_t *icsp_INP;
-extern volatile uint8_t *icsp_DIRP;
-extern uint8_t icsp_CLKB, icsp_DATB, icsp_VPPB;
+enum PORTS {
+	OUT, IN, DIR
+};
+enum PINS {
+	CLK, DATA, VPP
+};
+
+extern volatile uint8_t *icsp_PORTS[3];
+extern uint8_t icsp_PINS[3];
 
 void icsp_init(void);
 
