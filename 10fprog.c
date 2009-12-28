@@ -8,9 +8,9 @@ void tenfprog_init(volatile uint8_t *OUTP,
 	icsp_PORTS[OUT] = OUTP;
 	icsp_PORTS[IN]  = INP;
 	icsp_PORTS[DIR] = DIRP;
-	icsp_PINS[CLK]  = CLKB;
-	icsp_PINS[DATA] = DATB;
-	icsp_PINS[VPP]  = VPPB;
+	icsp_PINS[CLK]  = 1 << CLKB;
+	icsp_PINS[DATA] = 1 << DATB;
+	icsp_PINS[VPP]  = 1 << VPPB;
 
 	/* Ensure the uC doesn't begin in programming mode */
 	icsp_vpp_output();

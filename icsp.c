@@ -3,12 +3,8 @@
 volatile uint8_t *icsp_PORTS[3];
 uint8_t icsp_PINS[3];
 
-#ifndef _BV
-#define _BV(bit) (1 << (bit))
-#endif
-
-#define SET_BIT(p, b) ((p) |= _BV(b))
-#define CLEAR_BIT(p, b) ((p) &= _BV(b))
+#define SET_BIT(p, b) ((p) |= b)
+#define CLEAR_BIT(p, b) ((p) &= b)
 
 #define PIN_OUT(p)  SET_BIT(*icsp_PORTS[DIR], icsp_PINS[p])
 #define PIN_IN(p)   CLEAR_BIT(*icsp_PORTS[DIR], icsp_PINS[p])
